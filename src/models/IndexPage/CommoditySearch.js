@@ -5,11 +5,12 @@ export default {
 
     state: {
         data: {
-            data:{
+            data: {
                 data: [],
             },
         },
         text: {},
+        switchVal: false,
     },
 
     reducers: {
@@ -22,6 +23,11 @@ export default {
             state.text = payload;
             return Object.assign({}, state);
         },
+
+        changeSwitchVal(state, {payload}) {
+            state.switchVal = payload;
+            return Object.assign({}, state);
+        }
     },
 
     effects: {

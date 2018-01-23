@@ -2,14 +2,18 @@ import React from 'react';
 import styles from './ResultTable.css';
 import {Table, Input, Button, Icon} from 'antd';
 
+const defaultCurrent = 1;
+
 class ResultTable extends React.Component {
+
     constructor(prop) {
         super(prop);
         this.state = {
             filterDropdownVisible: false,
             data: [],
             filtered: false,
-            sort_by: 'ts_scoreitem'
+            sort_by: 'ts_scoreitem',
+            pageNumber: 1,
         };
     }
 
@@ -46,13 +50,17 @@ class ResultTable extends React.Component {
         })
     }
 
+    static handleGoToOnChange(pageNumber) {
+        console.log('Page: ', pageNumber);
+    }
+
     render() {
         const sort_by = this.state.sort_by;
         const columns = [{
             title: '',
             dataIndex: 'index',
             key: 'index',
-            fixed: 'left',
+            fixed: (this.props.data.switchVal) ? '' : 'left',
         }, {
             title: 'id',
             dataIndex: 'product_no',
@@ -90,7 +98,7 @@ class ResultTable extends React.Component {
         const dataSource = this.state.data.map((x, index) => {
             return {
                 key: index,
-                index: index + 1,
+                index: <span style={{color: 'black'}}>{index + 1}</span>,
                 product_no: x.product_no,
                 sku: x.sku,
                 spu: x.spu,
@@ -104,7 +112,16 @@ class ResultTable extends React.Component {
 
         return (
             <div className={styles.ResultTable}>
-                <Table columns={columns} dataSource={dataSource} loading={this.props.loading} scroll={{ x: 'auto'}}/>
+                <Table columns={columns} dataSource={dataSource} loading={this.props.loading} scroll={{x: 'auto'}}
+                       size={(!this.props.data.switchVal) ? '' : 'small'}
+                       pagination={{
+                           showQuickJumper: true,
+                           onChange: ResultTable.handleGoToOnChange,
+                           defaultCurrent: defaultCurrent,
+                           showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+                           pageSize: (!this.props.data.switchVal) ? 10 : 20,
+                       }}
+                />
             </div>
         );
     }

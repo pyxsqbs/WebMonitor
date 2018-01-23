@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SelectForm.css';
-import {Form, Radio, Button, Input} from 'antd';
+import {Form, Radio, Button, Input, Switch} from 'antd';
 
 const FormItem = Form.Item;
 const RadioButton = Radio.Button;
@@ -9,6 +9,7 @@ const RadioGroup = Radio.Group;
 class SelectForm extends React.Component {
     constructor(props) {
         super(props);
+        this.handleSwitchChange = this.handleSwitchChange.bind(this);
     }
 
     handleSubmit = (e) => {
@@ -26,7 +27,19 @@ class SelectForm extends React.Component {
 
     handleReset = () => {
         this.props.form.resetFields();
+        this.props.dispatch({
+            type: 'CommoditySearch/changeSwitchVal',
+            payload: false,
+        })
     };
+
+    handleSwitchChange(checked) {
+        // console.log(checked);
+        this.props.dispatch({
+            type: 'CommoditySearch/changeSwitchVal',
+            payload: checked,
+        })
+    }
 
     render() {
         const {getFieldDecorator} = this.props.form;
@@ -91,6 +104,19 @@ class SelectForm extends React.Component {
                     </FormItem>
 
                     <FormItem
+                        {...formItemLayout}
+                        label="紧凑"
+                    >
+                        {getFieldDecorator('small', {
+                            valuePropName: 'checked',
+                            initialValue: false,
+                        })(
+                            <Switch onChange={this.handleSwitchChange}/>
+                        )}
+                    </FormItem>
+
+
+                    <FormItem
                         wrapperCol={{span: 12, offset: 6}}
                     >
                         <Button type="primary" htmlType="submit" disabled={this.props.loading}>查询</Button>
@@ -100,6 +126,7 @@ class SelectForm extends React.Component {
         );
     }
 }
+
 
 const WrappedSelectForm = Form.create()(SelectForm);
 
