@@ -28,15 +28,7 @@ class ResultTable extends React.Component {
         });
 
         //数据数组
-        const result = cbData.data;
-
-        this.setState({
-            dataInit: result,
-        }, () => this.setState({
-            data: [],
-        }, () => this.setState({
-            data: this.state.dataInit,
-        })));
+        let result = cbData.data;
 
         const keyword_reg = new RegExp(keyword, 'gi');
         this.setState({
@@ -58,7 +50,13 @@ class ResultTable extends React.Component {
                     key: index,
                 };
             }).filter(record => !!record),
-        })
+        }, () => this.setState({
+            dataInit: this.state.data,
+        }, () => this.setState({
+            data: [],
+        }, () => this.setState({
+            data: this.state.dataInit,
+        }))));
     }
 
     static handleGoToOnChange(pageNumber) {
@@ -137,6 +135,5 @@ class ResultTable extends React.Component {
         );
     }
 }
-
 
 export default ResultTable;
