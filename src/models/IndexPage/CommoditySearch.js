@@ -16,13 +16,10 @@ export default {
     reducers: {
         INIT(state, {payload}) {
             return Object.assign({}, {
-                data: {
-                    data: {
-                        data: [],
-                    },
-                },
-                text: {},
-                switchVal: false,
+                classification: [],
+                geogId: '',
+                queryKnowledgeTableData: [],
+                totalProperty: 0,
             });
         },
 
@@ -46,8 +43,14 @@ export default {
         * getValue({payload}, {call, put, select}) {
             yield put({type: 'initText', payload: payload});
             const result = yield call(getData, payload);
-            if (JSON.stringify(result).indexOf('"err":') === -1) {
+            if (JSON.stringify(result).indexOf('"err":') === -1 && result.status === 1000) {
                 yield put({type: 'initData', payload: result});
+            } else {
+                yield put({
+                    type: 'initData', payload: Object.assign(result, {
+                        data: [],
+                    })
+                });
             }
         },
     },
