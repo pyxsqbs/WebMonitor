@@ -43,14 +43,13 @@ export default {
         * getValue({payload}, {call, put, select}) {
             yield put({type: 'initText', payload: payload});
             const result = yield call(getData, payload);
-            if (JSON.stringify(result).indexOf('"err":') === -1 && result.status === 1000) {
+            if (JSON.stringify(result).indexOf('"err":') === -1 && result.data.status === 1000) {
                 yield put({type: 'initData', payload: result});
             } else {
-                yield put({
-                    type: 'initData', payload: Object.assign(result, {
-                        data: [],
-                    })
+                result.data = Object.assign(result.data, {
+                    data: [],
                 });
+                yield put({type: 'initData', payload: Object.assign({},result)});
             }
         },
     },

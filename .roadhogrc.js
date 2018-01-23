@@ -25,12 +25,12 @@ export default {
             "pathRewrite": {"^/api": ""},
             "secure": false
         },
-        "/CommoditySearch": {
-            "target": "http://10.171.100.100:5090/",
-            "changeOrigin": true,
-            "pathRewrite": {"^/CommoditySearch": ""},
-            "secure": false
-        },
+        // "/CommoditySearch": {
+        //     "target": "http://10.171.100.100:5090/",
+        //     "changeOrigin": true,
+        //     "pathRewrite": {"^/CommoditySearch": ""},
+        //     "secure": false
+        // },
     }
 }
 
