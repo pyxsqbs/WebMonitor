@@ -16,7 +16,7 @@ class SelectForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
                 this.props.dispatch({
                     type: 'CommoditySearch/getValue',
                     payload: values,
@@ -79,10 +79,10 @@ class SelectForm extends React.Component {
                         label="优先"
                     >
                         {getFieldDecorator('sort_by', {
-                            initialValue: 'ts_scoreitem'
+                            initialValue: 'ts_score'
                         })(
                             <RadioGroup>
-                                <RadioButton value="ts_scoreitem">评分</RadioButton>
+                                <RadioButton value="ts_score">评分</RadioButton>
                                 <RadioButton value="price">价格</RadioButton>
                                 <RadioButton value="sales_volume">销量</RadioButton>
                             </RadioGroup>
@@ -126,7 +126,6 @@ class SelectForm extends React.Component {
         );
     }
 }
-
 
 const WrappedSelectForm = Form.create()(SelectForm);
 

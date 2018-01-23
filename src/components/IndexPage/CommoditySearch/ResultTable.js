@@ -12,29 +12,40 @@ class ResultTable extends React.Component {
             filterDropdownVisible: false,
             data: [],
             filtered: false,
-            sort_by: 'ts_scoreitem',
+            sort_by: 'ts_score',
             pageNumber: 1,
+            dataInit: [],
         };
     }
 
     componentWillReceiveProps(nextProps) {
+
         //返回数据
         const cbData = nextProps.data.data.data;
         const {keyword, desc, sort_by} = this.props.data.text;
         this.setState({
             sort_by: sort_by,
         });
+
         //数据数组
         const result = cbData.data;
+
+        this.setState({
+            dataInit: result,
+        }, () => this.setState({
+            data: [],
+        }, () => this.setState({
+            data: this.state.dataInit,
+        })));
 
         const keyword_reg = new RegExp(keyword, 'gi');
         this.setState({
             data: result.map((record, index) => {
                 const keyword_match = String(record.product_name).match(keyword_reg);
-
-                if (!keyword_match) {
-                    return null;
-                }
+                // console.log(keyword_match)
+                // if (!keyword_match) {
+                //     return null;
+                // }
                 return {
                     ...record,
                     product_name: (
@@ -51,7 +62,7 @@ class ResultTable extends React.Component {
     }
 
     static handleGoToOnChange(pageNumber) {
-        console.log('Page: ', pageNumber);
+        // console.log('Page: ', pageNumber);
     }
 
     render() {
@@ -60,7 +71,7 @@ class ResultTable extends React.Component {
             title: '',
             dataIndex: 'index',
             key: 'index',
-            fixed: (this.props.data.switchVal) ? '' : 'left',
+            fixed: (this.props.data.switchVal) ? 'left' : 'left',
         }, {
             title: 'id',
             dataIndex: 'product_no',
@@ -78,7 +89,7 @@ class ResultTable extends React.Component {
             dataIndex: 'product_name',
             key: 'product_name ',
         }, {
-            title: (sort_by === 'ts_scoreitem') ? <span className={styles.highlight}>{'评分'}</span> : '评分',
+            title: (sort_by === 'ts_score') ? <span className={styles.highlight}>{'评分'}</span> : '评分',
             dataIndex: 'ts_score',
             key: 'ts_score',
         }, {
@@ -126,5 +137,6 @@ class ResultTable extends React.Component {
         );
     }
 }
+
 
 export default ResultTable;

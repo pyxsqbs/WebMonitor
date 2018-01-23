@@ -12,6 +12,17 @@ export default {
     },
 
     reducers: {
+        INIT(state, {payload}) {
+            return Object.assign({}, {
+                data: {
+                    data: {
+                        result: []
+                    }
+                },
+                text: {},
+            });
+        },
+
         initData(state, {payload}) {
             state.data = payload;
             return Object.assign({}, state);

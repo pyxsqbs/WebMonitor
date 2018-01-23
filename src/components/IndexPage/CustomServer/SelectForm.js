@@ -20,7 +20,7 @@ class SelectForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
                 this.props.dispatch({
                     type: 'CustomServer/getValue',
                     payload: values,
@@ -74,9 +74,7 @@ class SelectForm extends React.Component {
                         label=" "
                     >
                         <span className="ant-form-text" style={{fontSize: 20}}>客服中心</span>
-                        <Button style={{float: 'right'}} onClick={this.handleReset}>
-                            Clear
-                        </Button>
+                        <Button style={{float: 'right'}} onClick={this.handleReset}>清除</Button>
                     </FormItem>
                     {/*<FormItem*/}
                     {/*{...formItemLayout}*/}
@@ -131,10 +129,10 @@ class SelectForm extends React.Component {
 
                     <FormItem
                         {...formItemLayout}
-                        label="user bubble"
+                        label="用户提问"
                     >
                         {getFieldDecorator('user_bubble', {
-                            rules: [{message: 'Please input user bubble!', whitespace: true}],
+                            rules: [{message: '请输入搜索的用户提问!', whitespace: true}],
                         })(
                             <Input/>
                         )}
@@ -142,10 +140,10 @@ class SelectForm extends React.Component {
 
                     <FormItem
                         {...formItemLayout}
-                        label="robot bubble"
+                        label="智能回答"
                     >
                         {getFieldDecorator('robot_bubble', {
-                            rules: [{message: 'Please input robot bubble!', whitespace: true}],
+                            rules: [{message: '请输入搜索的智能回答!', whitespace: true}],
                         })(
                             <Input/>
                         )}
@@ -153,7 +151,7 @@ class SelectForm extends React.Component {
 
                     <FormItem
                         {...formItemLayout}
-                        label="skip"
+                        label="跳过"
                     >
                         {getFieldDecorator('skip', {initialValue: 0})(
                             <InputNumber min={0}/>
@@ -163,7 +161,7 @@ class SelectForm extends React.Component {
 
                     <FormItem
                         {...formItemLayout}
-                        label="fuzzy"
+                        label="模糊匹配"
                     >
                         {getFieldDecorator('fuzzy', {valuePropName: 'checked', initialValue: true})(
                             <Switch/>
@@ -172,7 +170,7 @@ class SelectForm extends React.Component {
 
                     <FormItem
                         {...formItemLayout}
-                        label="time"
+                        label="日期区间"
                     >
                         {getFieldDecorator('time', rangeConfig)(
                             <RangePicker showTime format="YYYY-MM-DD HH:mm:ss"/>
@@ -192,7 +190,7 @@ class SelectForm extends React.Component {
 
                     <FormItem
                         {...formItemLayout}
-                        label="username"
+                        label="用户名"
                     >
                         {getFieldDecorator('username', {
                             rules: [{message: 'Please input username!', whitespace: true}],
@@ -238,7 +236,7 @@ class SelectForm extends React.Component {
 
                     <FormItem
                         {...formItemLayout}
-                        label="score"
+                        label="分数"
                     >
                         {getFieldDecorator('score', {
                             initialValue: 5,
@@ -267,7 +265,7 @@ class SelectForm extends React.Component {
                     <FormItem
                         wrapperCol={{span: 12, offset: 6}}
                     >
-                        <Button type="primary" htmlType="submit" disabled={this.props.loading}>Submit</Button>
+                        <Button type="primary" htmlType="submit" disabled={this.props.loading}>查询</Button>
                     </FormItem>
                 </Form>
             </div>

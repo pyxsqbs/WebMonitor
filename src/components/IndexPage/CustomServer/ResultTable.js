@@ -120,7 +120,7 @@ class ResultTable extends React.Component {
 
     render(){
         const columns = [{
-            title: 'date',
+            title: '日期',
             dataIndex: 'date',
             fixed: 'left',
             key: 'date',
@@ -128,12 +128,12 @@ class ResultTable extends React.Component {
                 <div className={styles.custom_filter_dropdown}>
                     <Input
                         ref={ele => this.searchInput = ele}
-                        placeholder="Search time"
+                        placeholder="搜索时间"
                         value={this.state.searchText}
                         onChange={this.onInputChange}
                         onPressEnter={this.onSearch}
                     />
-                    <Button type="primary" onClick={this.onSearch}>Enter</Button>
+                    <Button type="primary" onClick={this.onSearch}>确定</Button>
                 </div>
             ),
             filterIcon: <Icon type="search" style={{color: this.state.filtered ? '#108ee9' : '#aaa'}}/>,
@@ -144,12 +144,12 @@ class ResultTable extends React.Component {
                 }, () => this.searchInput && this.searchInput.focus());
             },
         }, {
-            title: 'user bubble',
+            title: '用户提问',
             dataIndex: 'user_bubble',
             key: 'user_bubble',
             fixed: 'left',
         }, {
-            title: 'robot bubble',
+            title: '智能回答',
             dataIndex: 'robot_bubble',
             key: 'robot_bubble',
             width: '100%',

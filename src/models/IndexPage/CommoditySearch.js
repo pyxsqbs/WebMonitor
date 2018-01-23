@@ -14,6 +14,18 @@ export default {
     },
 
     reducers: {
+        INIT(state, {payload}) {
+            return Object.assign({}, {
+                data: {
+                    data: {
+                        data: [],
+                    },
+                },
+                text: {},
+                switchVal: false,
+            });
+        },
+
         initData(state, {payload}) {
             state.data = payload;
             return Object.assign({}, state);
@@ -27,7 +39,7 @@ export default {
         changeSwitchVal(state, {payload}) {
             state.switchVal = payload;
             return Object.assign({}, state);
-        }
+        },
     },
 
     effects: {

@@ -31,10 +31,10 @@ class TopMenu extends React.Component {
                     mode="horizontal"
                 >
                     <Menu.Item key="CommoditySearch">
-                        <Icon type="mail"/>CommoditySearch
+                        <Icon type="mail"/>商品搜索
                     </Menu.Item>
                     <Menu.Item key="CustomServer">
-                        <Icon type="book"/>CustomServer
+                        <Icon type="book"/>智能客服
                     </Menu.Item>
                 </Menu>
             </div>

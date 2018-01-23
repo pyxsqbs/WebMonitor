@@ -9,6 +9,13 @@ class CommoditySearch extends React.Component {
         super(props);
     }
 
+    componentWillUnmount() {
+        this.props.dispatch({
+            type: 'CommoditySearch/INIT',
+            payload: null,
+        })
+    }
+
     render() {
         return (
             <div className={styles.CommoditySearch}>

@@ -9,6 +9,13 @@ class CustomServer extends React.Component {
         super(props);
     }
 
+    componentWillUnmount() {
+        this.props.dispatch({
+            type: 'CustomServer/INIT',
+            payload: null,
+        })
+    }
+
     render() {
         return (
             <div className={styles.CustomServer}>
