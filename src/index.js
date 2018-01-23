@@ -18,6 +18,7 @@ app.use(createLoading());
 
 // 3. Model
 app.model(require("./models/IndexPage/CustomServer"));
+app.model(require("./models/IndexPage/CommoditySearch"));
 
 // 4. Router
 app.router(require('./router'));

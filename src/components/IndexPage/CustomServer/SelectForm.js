@@ -151,15 +151,15 @@ class SelectForm extends React.Component {
                         )}
                     </FormItem>
 
-                    {/*<FormItem*/}
-                    {/*{...formItemLayout}*/}
-                    {/*label="after"*/}
-                    {/*>*/}
-                    {/*{getFieldDecorator('after', {initialValue: 3})(*/}
-                    {/*<InputNumber min={0} max={48}/>*/}
-                    {/*)}*/}
-                    {/*<span className="ant-form-text"> hours</span>*/}
-                    {/*</FormItem>*/}
+                    <FormItem
+                        {...formItemLayout}
+                        label="skip"
+                    >
+                        {getFieldDecorator('skip', {initialValue: 0})(
+                            <InputNumber min={0}/>
+                        )}
+                        <span className="ant-form-text"> 万</span>
+                    </FormItem>
 
                     <FormItem
                         {...formItemLayout}
@@ -186,7 +186,7 @@ class SelectForm extends React.Component {
                         {getFieldDecorator('session_id', {
                             rules: [{message: 'Please input session id!', whitespace: true}],
                         })(
-                            <Input/>
+                            <Input disabled={true}/>
                         )}
                     </FormItem>
 
@@ -197,7 +197,7 @@ class SelectForm extends React.Component {
                         {getFieldDecorator('username', {
                             rules: [{message: 'Please input username!', whitespace: true}],
                         })(
-                            <Input/>
+                            <Input disabled={true}/>
                         )}
                     </FormItem>
 

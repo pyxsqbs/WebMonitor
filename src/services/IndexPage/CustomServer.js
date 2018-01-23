@@ -3,7 +3,7 @@ import queryString from 'querystring';
 import api from '../../utils/api';
 
 export async function getData(payload) {
-    const {session_id, username, robot_bubble, user_bubble, fuzzy, time, score} = payload;
+    const {session_id, username, robot_bubble, user_bubble, fuzzy, time, score, limit, skip} = payload;
     const startTime = (time) ? time[0].format('x') : '';
     const endTime = (time) ? time[1].format('x') : '';
     const params = {
@@ -15,6 +15,8 @@ export async function getData(payload) {
         'score': score || '',
         'startTime': startTime || '',
         'endTime': endTime || '',
+        'limit': limit || 10000,
+        'skip': skip || 0,
     };
     return request(api + '/?' + queryString.stringify(params), {
         method: 'GET',

@@ -11,14 +11,14 @@ class IndexPage extends React.Component {
 
     render() {
         return (
-            <div className={styles.IndexPage}>
+            <div className={styles.IndexPage} style={{minHeight: window.screen.height}}>
                 {/*公共导航栏*/}
                 <TopMenu/>
                 {/*子路由组件*/}
                 <div className={styles.children}>
                     {this.props.children}
                 </div>
-                <span className={styles.span}>AI-monitor power by 9FAI</span>
+                <span className={styles.span}>AI-monitor powered by 9FAI</span>
             </div>
         );
     }
