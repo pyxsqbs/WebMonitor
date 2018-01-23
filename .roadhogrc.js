@@ -28,7 +28,7 @@ export default {
         // "/CommoditySearch": {
         //     "target": "http://10.171.100.100:5090/",
         //     "changeOrigin": true,
-        //     "pathRewrite": {"^/api": ""},
+        //     "pathRewrite": {"^/CommoditySearch": ""},
         //     "secure": false
         // },
     }
